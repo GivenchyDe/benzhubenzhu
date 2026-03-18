@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>石头迷阵StoneMaze-Web版</title>
+    <!-- 引入外部CSS文件 -->
+    <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+<header>
+    <h1>石头迷阵-StoneMaze</h1>
+    <p>移动方块，按顺序排列数字</p>
+</header>
+
+<div class="game-container">
+    <div class="game-info">
+        <div class="info-item">
+            <div class="info-label">当前步数</div>
+            <div class="info-value" id="step-count">0</div>
+        </div>
+        <div class="info-item">
+            <div class="info-label">游戏用时</div>
+            <div class="info-value" id="game-time">-</div>
+        </div>
+    </div>
+
+    <div class="game-board" id="game-board">
+        <!-- 游戏方块将通过JavaScript动态生成 -->
+    </div>
+
+    <div class="controls">
+        <button id="restart-btn">重新开始</button>
+        <button id="about-btn">关于游戏</button>
+    </div>
+
+    <div class="instructions">
+        <p>使用键盘方向键移动方块 | 点击方块也可以移动</p>
+    </div>
+</div>
+
+<div class="win-message" id="win-message">
+    <div class="win-content">
+        <h2 class="win-title">恭喜获胜！</h2>
+        <div class="win-stats">
+            <p>您用了 <span id="win-steps">0</span> 步完成游戏</p>
+            <p>完成时间: <span id="win-time">-</span></p>
+        </div>
+        <button class="win-button" id="win-restart-btn">再玩一次</button>
+    </div>
+</div>
+
+<!-- 引入外部JavaScript文件 -->
+<script src="javascript\javascript.js"></script>
+</body>
+</html>
