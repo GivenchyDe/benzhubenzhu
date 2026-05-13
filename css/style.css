@@ -1,0 +1,568 @@
+/* ============================================
+   共享单车区块链 Bike3 - 绿色主题样式
+   ============================================ */
+
+:root {
+  --green-primary: #28a745;
+  --green-dark: #1e7e34;
+  --green-light: #d4edda;
+  --green-lighter: #e8f5e9;
+  --green-gradient: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  --white: #ffffff;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+  --danger: #dc3545;
+  --warning: #ffc107;
+  --info: #17a2b8;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: linear-gradient(180deg, #e8f5e9 0%, #f0f4f0 30%, #ffffff 100%);
+  min-height: 100vh;
+  color: var(--gray-800);
+}
+
+/* ===== 导航栏 ===== */
+.navbar-custom {
+  background: var(--green-gradient);
+  box-shadow: 0 2px 16px rgba(40, 167, 69, 0.3);
+  padding: 0.6rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+}
+
+.navbar-brand-custom {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.navbar-brand-custom .icon-bike {
+  font-size: 1.6rem;
+}
+
+.nav-tabs-custom {
+  border-bottom: none;
+  gap: 0.25rem;
+}
+
+.nav-tabs-custom .nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 0.5rem 1.1rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.nav-tabs-custom .nav-link:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-tabs-custom .nav-link.active {
+  color: var(--green-dark) !important;
+  background: #fff !important;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== 钱包状态栏 ===== */
+.wallet-bar {
+  background: #fff;
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.wallet-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.wallet-address {
+  font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 0.85rem;
+  background: var(--green-lighter);
+  color: var(--green-dark);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.balance-badge {
+  background: var(--green-gradient);
+  color: #fff;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.role-badge {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.role-admin {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.role-user {
+  background: var(--green-light);
+  color: var(--green-dark);
+}
+
+/* ===== 主内容区 ===== */
+.main-content {
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tab-pane-custom {
+  display: none;
+  animation: fadeIn 0.35s ease;
+}
+
+.tab-pane-custom.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== 卡片样式 ===== */
+.card-custom {
+  background: #fff;
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.card-custom:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.card-header-custom {
+  background: var(--green-gradient);
+  color: #fff;
+  padding: 0.9rem 1.25rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-body-custom {
+  padding: 1.25rem;
+}
+
+/* ===== 统计卡片 ===== */
+.stat-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--green-primary);
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stat-card .stat-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card .stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+.stat-card .stat-label {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  margin-top: 0.25rem;
+}
+
+.stat-card.available { border-left-color: #28a745; }
+.stat-card.rented { border-left-color: #ffc107; }
+.stat-card.fault { border-left-color: #dc3545; }
+.stat-card.income { border-left-color: #17a2b8; }
+
+/* ===== 按钮样式 ===== */
+.btn-custom {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0.45rem 1.1rem;
+  transition: var(--transition);
+  font-size: 0.875rem;
+}
+
+.btn-green {
+  background: var(--green-gradient);
+  color: #fff;
+  border: none;
+}
+
+.btn-green:hover {
+  background: linear-gradient(135deg, #1e7e34 0%, #1aa179 100%);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-outline-green {
+  border: 2px solid var(--green-primary);
+  color: var(--green-primary);
+  background: transparent;
+}
+
+.btn-outline-green:hover {
+  background: var(--green-primary);
+  color: #fff;
+}
+
+/* ===== 表格样式 ===== */
+.table-custom {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.table-custom thead {
+  background: var(--green-gradient);
+  color: #fff;
+}
+
+.table-custom thead th {
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  vertical-align: middle;
+}
+
+.table-custom tbody td {
+  padding: 0.7rem 1rem;
+  vertical-align: middle;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.table-custom tbody tr {
+  transition: var(--transition);
+}
+
+.table-custom tbody tr:hover {
+  background: var(--green-lighter);
+}
+
+/* ===== 状态标签 ===== */
+.status-badge {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-available {
+  background: var(--green-light);
+  color: #155724;
+}
+
+.status-rented {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-fault {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.status-unavailable {
+  background: var(--gray-200);
+  color: var(--gray-600);
+}
+
+/* ===== 表单样式 ===== */
+.form-control-custom {
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--gray-300);
+  padding: 0.55rem 0.9rem;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.form-control-custom:focus {
+  border-color: var(--green-primary);
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.15);
+  outline: none;
+}
+
+.form-label-custom {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--gray-700);
+  margin-bottom: 0.35rem;
+}
+
+/* ===== 弹窗 ===== */
+.modal-custom-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-custom-overlay.show {
+  display: flex;
+}
+
+.modal-custom {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  max-width: 500px;
+  width: 90%;
+  padding: 1.5rem;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-custom-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.modal-custom-header h5 {
+  font-weight: 700;
+  color: var(--gray-800);
+  margin: 0;
+}
+
+.modal-custom-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--gray-600);
+  transition: var(--transition);
+}
+
+.modal-custom-close:hover {
+  color: var(--danger);
+}
+
+/* ===== 事件日志卡片 ===== */
+.log-item {
+  background: #fff;
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid var(--green-primary);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.log-item:hover {
+  box-shadow: var(--shadow);
+}
+
+.log-item .log-type {
+  font-weight: 700;
+  color: var(--green-dark);
+  font-size: 0.85rem;
+}
+
+.log-item .log-time {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+.log-item .log-hash {
+  font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 0.78rem;
+  color: var(--gray-600);
+  word-break: break-all;
+}
+
+.log-type-bike-added { border-left-color: #28a745; }
+.log-type-bike-rented { border-left-color: #ffc107; }
+.log-type-bike-returned { border-left-color: #17a2b8; }
+.log-type-bike-status { border-left-color: #6f42c1; }
+.log-type-fault-reported { border-left-color: #dc3545; }
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+  .navbar-custom { padding: 0.5rem 0.75rem; }
+  .navbar-brand-custom { font-size: 1rem; }
+  .nav-tabs-custom .nav-link { padding: 0.4rem 0.6rem; font-size: 0.75rem; }
+
+  .wallet-bar { padding: 0.5rem 0.75rem; flex-direction: column; align-items: flex-start; }
+  .wallet-info { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+
+  .main-content { padding: 1rem; }
+
+  .stat-card { padding: 0.9rem; }
+  .stat-card .stat-value { font-size: 1.3rem; }
+
+  .table-custom { font-size: 0.75rem; }
+  .table-custom thead th,
+  .table-custom tbody td { padding: 0.4rem 0.5rem; }
+}
+
+/* ===== 空状态 ===== */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--gray-500);
+}
+
+.empty-state .empty-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.empty-state p {
+  font-size: 0.95rem;
+}
+
+/* ===== Toast 提示 ===== */
+.toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toast-custom {
+  background: #fff;
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1.1rem;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: slideInRight 0.3s ease;
+  max-width: 380px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.toast-success { border-left: 4px solid #28a745; color: #155724; }
+.toast-error { border-left: 4px solid #dc3545; color: #721c24; }
+.toast-info { border-left: 4px solid #17a2b8; color: #0c5460; }
+
+/* ===== 钱包弹窗 ===== */
+.wallet-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.wallet-list-item:hover {
+  border-color: var(--green-primary);
+  background: var(--green-lighter);
+}
+
+.wallet-list-item.active {
+  border-color: var(--green-primary);
+  background: var(--green-light);
+}
+
+/* ===== 加载动画 ===== */
+.loading-spinner {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2.5px solid var(--gray-300);
+  border-top-color: var(--green-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
