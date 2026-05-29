@@ -404,48 +404,6 @@ function validateDataIntegrity() {
     return { valid: warnings.length === 0, warnings };
 }
 
-// ---------- 测试数据生成 ----------
-
-/** 生成测试数据 */
-function generateTestData() {
-    let state = loadContractState();
-
-    if (state.bikes.length > 0) {
-        console.log('已有测试数据，跳过生成');
-        return;
-    }
-
-    const testBikes = [
-        { deposit: 0.1, pricePerMinute: 0.001 },
-        { deposit: 0.15, pricePerMinute: 0.0015 },
-        { deposit: 0.1, pricePerMinute: 0.001 },
-        { deposit: 0.2, pricePerMinute: 0.002 },
-        { deposit: 0.1, pricePerMinute: 0.001 },
-        { deposit: 0.15, pricePerMinute: 0.0015 },
-        { deposit: 0.1, pricePerMinute: 0.001 },
-        { deposit: 0.2, pricePerMinute: 0.002 },
-        { deposit: 0.15, pricePerMinute: 0.0015 },
-        { deposit: 0.1, pricePerMinute: 0.001 },
-    ];
-
-    testBikes.forEach(b => {
-        state.bikeCount++;
-        state.bikes.push(new Bike(state.bikeCount, b.deposit, b.pricePerMinute));
-        addEvent(state, 'BikeAdded', {
-            bikeId: state.bikeCount,
-            deposit: b.deposit,
-            pricePerMinute: b.pricePerMinute
-        });
-    });
-
-    // 标记2辆为故障
-    state.bikes[3].status = 3;
-    state.bikes[7].status = 3;
-
-    saveContractState(state);
-    console.log('测试数据已生成：10辆单车');
-}
-
 // 导出到全局
 window.ContractMock = {
     addBike,
@@ -466,5 +424,4 @@ window.ContractMock = {
     setOwner,
     isOwner,
     validateDataIntegrity,
-    generateTestData,
 };

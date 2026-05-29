@@ -551,18 +551,3 @@ body {
   border-color: var(--green-primary);
   background: var(--green-light);
 }
-
-/* ===== 加载动画 ===== */
-.loading-spinner {
-  display: inline-block;
-  width: 1.2rem;
-  height: 1.2rem;
-  border: 2.5px solid var(--gray-300);
-  border-top-color: var(--green-primary);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}

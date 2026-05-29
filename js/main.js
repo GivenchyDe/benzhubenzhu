@@ -567,16 +567,8 @@ function refreshAll() {
 // ===== 初始化 =====
 
 function init() {
-    console.log('🚲 共享单车区块链 Bike3 初始化中...');
-
     // 初始化环境
     WalletMock.initWalletEnv();
-
-    // 检查是否有测试数据
-    const state = ContractMock.loadContractState();
-    if (!state.bikes || state.bikes.length === 0) {
-        console.log('暂无测试数据，可点击「生成测试数据」按钮创建');
-    }
 
     // 刷新UI
     refreshWalletBar();
@@ -678,11 +670,6 @@ function init() {
     document.getElementById('btnQuickRent').addEventListener('click', () => switchTab('bikes'));
     document.getElementById('btnQuickOrders').addEventListener('click', () => switchTab('orders'));
     document.getElementById('btnQuickLogs').addEventListener('click', () => switchTab('logs'));
-    document.getElementById('btnGenTestData').addEventListener('click', () => {
-        ContractMock.generateTestData();
-        showToast('测试数据已生成：10辆单车', 'success');
-        refreshAll();
-    });
 
     // ===== 单车列表 =====
     document.getElementById('bikeStatusFilter').addEventListener('change', refreshBikeList);
@@ -749,8 +736,6 @@ function init() {
             refreshOrderList();
         }
     }, 10000);
-
-    console.log('✅ Bike3 初始化完成');
 }
 
 // 页面加载完成后初始化
