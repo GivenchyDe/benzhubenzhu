@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电影市场票房转化漏斗分析</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 页面标题 -->
+        <header class="header">
+            <h1>电影市场票房转化漏斗分析</h1>
+            <p class="subtitle">数据来源：IMDB 公开数据集 | 纯静态版 | 双击打开即可使用</p>
+        </header>
+
+        <!-- 筛选控制区 -->
+        <div class="controls">
+            <div class="control-group">
+                <label>年份范围：</label>
+                <div class="year-range">
+                    <input type="number" id="yearStart" min="1900" max="2024" value="2000" placeholder="起始年份">
+                    <span>至</span>
+                    <input type="number" id="yearEnd" min="1900" max="2024" value="2024" placeholder="结束年份">
+                </div>
+            </div>
+            <div class="control-group">
+                <label>电影类型：</label>
+                <select id="genreSelect">
+                    <option value="">全部类型</option>
+                    <option value="Drama">剧情</option>
+                    <option value="Comedy">喜剧</option>
+                    <option value="Action">动作</option>
+                    <option value="Romance">爱情</option>
+                    <option value="Crime">犯罪</option>
+                    <option value="Horror">恐怖</option>
+                    <option value="Thriller">惊悚</option>
+                    <option value="Documentary">纪录片</option>
+                    <option value="Adventure">冒险</option>
+                    <option value="Mystery">悬疑</option>
+                    <option value="Fantasy">奇幻</option>
+                    <option value="Sci-Fi">科幻</option>
+                    <option value="Family">家庭</option>
+                    <option value="Biography">传记</option>
+                    <option value="History">历史</option>
+                    <option value="Animation">动画</option>
+                    <option value="War">战争</option>
+                    <option value="Music">音乐</option>
+                    <option value="Western">西部</option>
+                    <option value="Sport">运动</option>
+                    <option value="Musical">歌舞</option>
+                    <option value="Film-Noir">黑色电影</option>
+                    <option value="News">新闻</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label>最小投票数：</label>
+                <input type="number" id="minVotes" min="0" value="100" placeholder="最小投票数">
+            </div>
+            <div class="control-group">
+                <button id="btnFilter" class="btn btn-primary">应用筛选</button>
+                <button id="btnReset" class="btn btn-secondary">重置</button>
+            </div>
+        </div>
+
+        <!-- 数据统计信息 -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-label">数据状态：</span>
+                <span id="statStatus" class="stat-value">加载中...</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">总电影数：</span>
+                <span id="statTotal" class="stat-value">-</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">筛选条件：</span>
+                <span id="statFilter" class="stat-value">全部</span>
+            </div>
+        </div>
+
+        <!-- 第一行：漏斗图 + 类型分布 -->
+        <div class="chart-row">
+            <div class="chart-col chart-col-main">
+                <h3 class="chart-title">转化漏斗分析</h3>
+                <div id="funnelChart" class="chart"></div>
+            </div>
+            <div class="chart-col chart-col-side">
+                <h3 class="chart-title">电影类型分布 (Top 15)</h3>
+                <div id="genreChart" class="chart"></div>
+            </div>
+        </div>
+
+        <!-- 第二行：年份趋势 + 散点图 -->
+        <div class="chart-row">
+            <div class="chart-col">
+                <h3 class="chart-title">年份趋势变化</h3>
+                <div id="trendChart" class="chart"></div>
+            </div>
+            <div class="chart-col">
+                <h3 class="chart-title">评分与投票数关系</h3>
+                <div id="scatterChart" class="chart"></div>
+            </div>
+        </div>
+
+        <!-- 转化率详情表格 -->
+        <div class="table-container">
+            <h3>转化率详情</h3>
+            <table id="conversionTable">
+                <thead>
+                    <tr>
+                        <th>层级</th>
+                        <th>电影数量</th>
+                        <th>占比</th>
+                        <th>层级转化率</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="conversionBody">
+                    <!-- 动态填充 -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 电影详情表格 -->
+        <div class="table-container">
+            <h3 id="movieTableTitle">电影详情列表</h3>
+            <div class="table-controls">
+                <div class="sort-controls">
+                    <label>排序：</label>
+                    <select id="sortBy">
+                        <option value="rating">按评分</option>
+                        <option value="votes">按投票数</option>
+                        <option value="year">按年份</option>
+                    </select>
+                    <select id="sortOrder">
+                        <option value="desc">降序</option>
+                        <option value="asc">升序</option>
+                    </select>
+                </div>
+                <div class="pagination-controls">
+                    <button id="btnPrevPage" class="btn btn-small" disabled>上一页</button>
+                    <span id="pageInfo">第 1 页</span>
+                    <button id="btnNextPage" class="btn btn-small">下一页</button>
+                </div>
+            </div>
+            <table id="movieTable">
+                <thead>
+                    <tr>
+                        <th>电影名称</th>
+                        <th>年份</th>
+                        <th>类型</th>
+                        <th>评分</th>
+                        <th>投票数</th>
+                    </tr>
+                </thead>
+                <tbody id="movieBody">
+                    <!-- 动态填充 -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 说明区域 -->
+        <div class="description">
+            <h3>关于本可视化</h3>
+            <p>本系统通过多个图表全方位展示电影市场的数据特征，帮助分析电影市场的竞争格局和成功要素。</p>
+            <ul>
+                <li><strong>漏斗图：</strong>展示从上映到经典的转化链路，识别市场瓶颈</li>
+                <li><strong>类型分布：</strong>展示各类型电影的数量和平均评分，发现热门类型</li>
+                <li><strong>年份趋势：</strong>展示电影数量和评分随时间的变化，分析市场趋势</li>
+                <li><strong>散点图：</strong>展示评分与投票数的关系，发现高口碑与高人气的关联</li>
+                <li><strong>电影详情：</strong>点击漏斗层级可查看对应电影列表，支持排序和分页</li>
+            </ul>
+            <p><strong>数据说明：</strong>本系统使用 IMDB 公开数据集，采样 14 万条电影数据进行分析。</p>
+        </div>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>ECharts 数据可视化课程设计 | 实验名称：场景驱动的可视化设计与分析</p>
+        </footer>
+    </div>
+
+    <!-- 加载脚本 -->
+    <script src="js/echarts.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
