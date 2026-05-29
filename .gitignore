@@ -1,0 +1,25 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build
+dist/
+build/
+node_modules/
+
+# Claude
+.claude/
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
